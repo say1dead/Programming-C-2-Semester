@@ -24,17 +24,36 @@ void without_real_point(float* a,float* b);
 void test_without_real();
 
 //10
-void complex_num_ref(float& a, float& b);
+struct complex_ref{
+    float real;
+    float imagine;
+    float imagine_after;
+};
 
-void  complex_num_point(float* a, float* b);
+void complex_num_ref(complex_ref &num);
+
+void complex_num_point(complex_ref *num);
 
 //test complex_num
 void test_complex_num();
 
 //13
-void square_ref(float& x1, float& y1, float& s, float& a, float& b);
+struct square{
+    float x1;
+    float x2;
+    float x3;
+    float x4;
+    float y1;
+    float y2;
+    float y3;
+    float y4;
+    float s;
+    float k1;
+    float k2;
+};
+void square_ref(square &pt);
 
-void square_point(float* x1, float* y1, float* s, float* a, float* b, float* x2, float* x3, float* x4, float* y2, float* y3, float* y4);
+void square_point(square *pt);
 
 //test square
 void test_square();
