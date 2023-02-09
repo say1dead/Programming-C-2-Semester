@@ -1,12 +1,11 @@
 #include <iostream>
 #include "lab1.h"
 
-
 int main(){
+    cout << "---FIRST MODULE---\n";
     float a, b;
     float c = 0;
 
-    cout << "---FIRST MODULE---\n";
     cout << "\nEnter first number -";
     cin >> a;
     cout << "Enter second number -";
@@ -16,55 +15,56 @@ int main(){
     test_summ();
 
     cout << "\n\n---SECOND MODULE---\n";
+    float a2, b2;
     cout << "\nEnter number -";
-    cin >> a;
-    without_real_point(&a, &b);
-    cout << "Result = " << b;
+    cin >> a2;
+    without_real_point(&a2, &b2);
+    cout << "Result = " << b2;
     test_without_real();
 
     cout << "\n\n---THIRD MODULE---\n";
+    complex_ref num;
     cout << "\nEnter Real (Re) number -";
-    cin >> a;
+    cin >> num.real;
     cout << "Enter Imagine (Im) number -";
-    cin >> b;
-    if (b > 0){
-        cout << "Result before = " << a << '+' << b << 'i';
+    cin >> num.imagine;
+    if (num.imagine > 0){
+        cout << "Result before = " << num.real << '+' << num.imagine << 'i';
     }
-    if (b < 0){
-        cout << "Result before = " << a << b << 'i';
+    if (num.imagine < 0){
+        cout << "Result before = " << num.real << num.imagine << 'i';
     }
-    if (b == 0){
-        cout << "Result before = " << a;
+    if (num.imagine == 0){
+        cout << "Result before = " << num.real;
     }
-    complex_num_ref(a, b);
-    if (b > 0){
-        cout << "\nResult after = " << a << '+' << b << 'i';
+    num.imagine_after= 0;
+    complex_num_ref(num);
+    if (num.imagine_after > 0){
+        cout << "\nResult after = " << num.real << '+' << num.imagine_after << 'i';
     }
-    if (b < 0){
-        cout << "\nResult after = " << a << b << 'i';
+    if (num.imagine_after < 0){
+        cout << "\nResult after = " << num.real << num.imagine_after << 'i';
     }
-    if (b == 0){
-        cout << "\nResult after = " << a;
+    if (num.imagine_after == 0){
+        cout << "\nResult after = " << num.real;
     }
     test_complex_num();
 
 
     cout << "\n\n---FOURTH MODULE---\n";
-    float x1, y1, s;
-    float x2, x3, x4;
-    float y2, y3, y4;
+    square pt;
     cout << "\nEnter the coordinates of the upper left corner of the square -";
-    cin >> x1 >> y1;
+    cin >> pt.x1 >> pt.y1;
     cout << "Enter side length of a square -";
-    cin >> s;
+    cin >> pt.s;
     cout << "Enter the vector coordinates -";
-    cin >> a >> b;
-    square_point(&x1,  &y1,  &s,  &a,  &b,  &x2, &x3, &x4, &y2, &y3, &y4);
+    cin >> pt.k1 >> pt.k2;
+    square_ref(pt);
     cout << "\nCoordinates after shift\n";
-    cout << "Coordinates of the first point (upper left corner) -" << '(' << x1 << ',' << ' ' << y1 << ")\n";
-    cout << "Coordinates of the second point (upper right corner) -" << '(' << x2 << ',' << ' ' << y2 << ")\n";
-    cout << "Coordinates of the third point (lower right corner) -" << '(' << x3 << ',' << ' ' << y3 << ")\n";
-    cout << "Coordinates of the fourth point (lower left corner) -" << '(' << x4 << ',' << ' ' << y4 << ")\n";
+    cout << "Coordinates of the first point (upper left corner) -" << '(' << pt.x1 << ',' << ' ' << pt.y1 << ")\n";
+    cout << "Coordinates of the second point (upper right corner) -" << '(' << pt.x2 << ',' << ' ' << pt.y2 << ")\n";
+    cout << "Coordinates of the third point (lower right corner) -" << '(' << pt.x3 << ',' << ' ' << pt.y3 << ")\n";
+    cout << "Coordinates of the fourth point (lower left corner) -" << '(' << pt.x4 << ',' << ' ' << pt.y4 << ")\n";
     test_square();
     return 0;
 }
