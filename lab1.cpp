@@ -13,14 +13,28 @@ void summ_point(float* a, float* b, float* c){
 
 //test summ
 void test_summ(){
-    float a = 2;
-    float b = 3;
-    float c_ref;
-    float c_point ;
-    summ_ref(a, b, c_ref);
-    summ_point(&a, &b, &c_point);
-    if ((c_ref == 5) and (c_point == 5)){
-        cout << "\nTEST FIRST MODULE - FIRST MODULE CORRECT";
+    float a[3] = {2, 582, 121};
+    float b[3] = {2, 241, 137};
+    float c_ref[3];
+    float c_point[3] ;
+    summ_ref(a[0], b[0], c_ref[0]);
+    summ_ref(a[1], b[1], c_ref[1]);
+    summ_ref(a[2], b[2], c_ref[2]);
+    summ_point(&a[0], &b[0], &c_point[0]);
+    summ_point(&a[1], &b[1], &c_point[1]);
+    summ_point(&a[2], &b[2], &c_point[2]);
+    if ((c_ref[0] == 4) and (c_point[0] == 4)){
+        if ((c_ref[1] == 823) and (c_point[1] == 823)){
+            if ((c_ref[2] == 258) and (c_point[2] == 258)){
+                cout << "\nTEST FIRST MODULE - FIRST MODULE CORRECT";
+            }
+            else{
+                cout << "\nTEST FIRST MODULE - FIRST MODULE NOT CORRECT";
+            }
+        }
+        else{
+            cout << "\nTEST FIRST MODULE - FIRST MODULE NOT CORRECT";
+        }
     }
     else{
         cout << "\nTEST FIRST MODULE - FIRST MODULE NOT CORRECT";
@@ -30,24 +44,37 @@ void test_summ(){
 //5
 void without_real_ref(float& a,float& b){
     cout.precision(4);
-    b = modf(a, &a);
+    b = a - (int) a;
 }
 
 void without_real_point(float* a,float* b){
     cout.precision(4);
-    *b = modf(*a, a);
+    *b = *a - int(*a);
 }
 
 void test_without_real(){
-    float a = 123.123;
-    float a_b = a;
-    float r = a - 123;
-    float b_ref;
-    float b_point;
-    without_real_ref(a, b_ref);
-    without_real_point(&a_b, &b_point);
-    if ((b_ref == r) and (b_point == r)){
-        cout << "\nTEST SECOND MODULE - SECOND MODULE CORRECT";
+    float a[3] = {123.123, -56721.321, -0.231};
+    float b_ref[3];
+    float b_point[3];
+    float r = a[1] - 123;
+    without_real_ref(a[0], b_ref[0]);
+    without_real_ref(a[1], b_ref[1]);
+    without_real_ref(a[2], b_ref[2]);
+    without_real_point(&a[0], &b_point[0]);
+    without_real_point(&a[1], &b_point[1]);
+    without_real_point(&a[2], &b_point[2]);
+    if ((b_ref[0] == a[0] - int(a[0])) and (b_point[0] == a[0] - int(a[0]))){
+        if ((b_ref[1] == a[1] - int(a[1])) and (b_point[1] == a[1] - int(a[1]))){
+            if ((b_ref[2] == a[2] - int(a[2])) and (b_point[2] == a[2] - int(a[2]))){
+                cout << "\nTEST SECOND MODULE - SECOND MODULE CORRECT";
+            }
+            else{
+                cout << "\nTEST SECOND MODULE - SECOND MODULE NOT CORRECT";
+            }
+        }
+        else{
+            cout << "\nTEST SECOND MODULE - SECOND MODULE NOT CORRECT";
+        }
     }
     else{
         cout << "\nTEST SECOND MODULE - SECOND MODULE NOT CORRECT";
@@ -62,7 +89,7 @@ struct complex_ref{
     float imagine_after;
 };
 
-void complex_num_ref(complex_ref &num){//a - re, b - im
+void complex_num_ref(complex_ref &num){
     num.imagine_after = -num.imagine;
 }
 
@@ -74,15 +101,28 @@ void complex_num_point(complex_ref *num){
 //test complex_num
 void test_complex_num(){
     complex_ref t_1;
+    complex_ref t_2;
+    complex_ref t_3;
+    complex_ref t_4;
     t_1.real = 2;
     t_1.imagine = 1;
+    t_2.real = 10;
+    t_2.imagine = -10;
+    t_3.real = 2;
+    t_3.imagine = 1;
+    t_4.real = 10;
+    t_4.imagine = -10;
     complex_num_ref(t_1);
-    complex_ref t_2;
-    t_2.real = 2;
-    t_2.imagine = 1;
-    complex_num_point(&t_2);
-    if ((t_1.imagine_after == -1) and (t_2.imagine_after == -1)){
-        cout << "\nTEST THIRD MODULE - THIRD MODULE CORRECT";
+    complex_num_ref(t_2);
+    complex_num_point(&t_3);
+    complex_num_point(&t_4);
+    if ((t_1.imagine_after == -1) and (t_3.imagine_after == -1)){
+        if ((t_2.imagine_after == 10) and (t_4.imagine_after == 10)){
+            cout << "\nTEST THIRD MODULE - THIRD MODULE CORRECT";
+        }
+        else{
+            cout << "\nTEST THIRD MODULE - THIRD MODULE NOT CORRECT";
+        }
     }
     else{
         cout << "\nTEST THIRD MODULE - THIRD MODULE NOT CORRECT";
