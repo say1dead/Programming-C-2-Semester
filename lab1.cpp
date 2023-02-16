@@ -130,14 +130,8 @@ void test_complex_num(){
 }
 //13
 struct square{
-    float x1;
-    float x2;
-    float x3;
-    float x4;
-    float y1;
-    float y2;
-    float y3;
-    float y4;
+    float x1, x2, x3, x4;
+    float y1, y2, y3, y4;
     float s;
     float k1;
     float k2;
@@ -192,28 +186,72 @@ void square_point(square *pt){
 //test square
 void test_square(){
     square t_1;
+    square t_2;
     t_1.x1 = 5;
     t_1.y1 = 5;
+    t_2.x1 = 5;
+    t_2.y1 = 5;
     t_1.s = 5;
+    t_2.s = 5;
     t_1.k1 = 5;
+    t_2.k1 = 5;
     t_1.k2 = 5;
+    t_2.k2 = 5;
     square_ref(t_1);
-    square t_2;
-    t_2.x1 = t_1.x1;
-    t_2.y1 = t_1.y1;
-    t_2.x2 = t_1.x2;
-    t_2.x3 = t_1.x3;
-    t_2.x4 = t_1.x4;
-    t_2.y2 = t_1.y2;
-    t_2.y3 = t_1.y3;
-    t_2.y4 = t_1.y4;
     square_point(&t_2);
-    if ((t_1.x1 == 20) and (t_2.x1 == 20) and (t_1.x2 == 25) and (t_2.x2 == 25) and (t_1.x3 == 25) and (t_2.x3 == 25) and (t_1.x4 == 20) and (t_2.x4 == 20)){
-        if((t_1.y1 == 15) and (t_2.y1 == 15) and (t_1.y2 == 15) and (t_2.y2 == 15) and (t_1.y3 == 10) and (t_2.y3 == 10) and (t_1.y4 == 10) and (t_2.y4 == 10)){
-            cout << "\nTEST FOURTH MODULE -  FOURTH MODULE CORRECT";
+    square t_3;
+    square t_4;
+    t_3.x1 = 3;
+    t_3.y1 = 3;
+    t_4.x1 = 3;
+    t_4.y1 = 3;
+    t_3.s = 3;
+    t_4.s = 3;
+    t_3.k1 = 3;
+    t_4.k1 = 3;
+    t_3.k2 = 3;
+    t_4.k2 = 3;
+    square_ref(t_3);
+    square_point(&t_4);
+    if ((t_1.x1 == 20) and (t_1.x2 == 25) and (t_1.x3 == 25) and (t_1.x4 == 20)){
+        if ((t_2.x1 == 20) and (t_2.x2 == 25) and (t_2.x3 == 25) and (t_2.x4 == 20)){
+            if ((t_1.y1 == 15) and (t_1.y2 == 15) and (t_1.y3 == 10) and (t_1.y4 == 10)){
+                if ((t_2.y1 == 15) and (t_2.y2 == 15) and (t_2.y3 == 10) and (t_2.y4 == 10)){//конец первого кейса
+                    if ((t_3.x1 == 12) and (t_3.x2 == 15) and (t_3.x3 == 15) and (t_3.x4 == 12)){
+                        if ((t_4.x1 == 12) and (t_4.x2 == 15) and (t_4.x3 == 15) and (t_4.x4 == 12)){
+                            if ((t_3.y1 == 9) and (t_3.y2 == 9) and (t_3.y3 == 6) and (t_3.y4 == 6)){
+                                if ((t_4.y1 == 9) and (t_4.y2 == 9) and (t_4.y3 == 6) and (t_4.y4 == 6)){
+                                    cout << "\nTEST FOURTH MODULE - FOURTH MODULE CORRECT";
+                                }
+                                else{
+                                    cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
+                                }
+                            }
+                            else{
+                                cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
+                            }
+                        }
+                        else{
+                            cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
+                        }
+                    }
+                    else{
+                        cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
+                    }
+                }
+                else{
+                    cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
+                }
+            }
+            else{
+                cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
+            }
+        }
+        else{
+            cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
         }
     }
     else{
-        cout << "\nTEST FOURTH MODULE - FOURTH MODULE CORRECT";
+        cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
     }
 }
