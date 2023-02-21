@@ -50,5 +50,7 @@ void square_ref(square &pt);
 void square_point(square *pt);
 
 //test square
-void test_square();
+void test_moveByRef();
+
+void start();
 #endif //UNTITLED28_LAB1_H

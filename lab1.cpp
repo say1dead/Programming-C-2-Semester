@@ -1,5 +1,6 @@
 #include <iostream>
-#include <cmath>
+#include "lab1_class_point.h"
+#include "lab1_class_square.h"
 using namespace std;
 
 //2
@@ -184,74 +185,87 @@ void square_point(square *pt){
 }
 
 //test square
-void test_square(){
-    square t_1;
-    square t_2;
-    t_1.x1 = 5;
-    t_1.y1 = 5;
-    t_2.x1 = 5;
-    t_2.y1 = 5;
-    t_1.s = 5;
-    t_2.s = 5;
-    t_1.k1 = 5;
-    t_2.k1 = 5;
-    t_1.k2 = 5;
-    t_2.k2 = 5;
-    square_ref(t_1);
-    square_point(&t_2);
-    square t_3;
-    square t_4;
-    t_3.x1 = 3;
-    t_3.y1 = 3;
-    t_4.x1 = 3;
-    t_4.y1 = 3;
-    t_3.s = 3;
-    t_4.s = 3;
-    t_3.k1 = 3;
-    t_4.k1 = 3;
-    t_3.k2 = 3;
-    t_4.k2 = 3;
-    square_ref(t_3);
-    square_point(&t_4);
-    if ((t_1.x1 == 20) and (t_1.x2 == 25) and (t_1.x3 == 25) and (t_1.x4 == 20)){
-        if ((t_2.x1 == 20) and (t_2.x2 == 25) and (t_2.x3 == 25) and (t_2.x4 == 20)){
-            if ((t_1.y1 == 15) and (t_1.y2 == 15) and (t_1.y3 == 10) and (t_1.y4 == 10)){
-                if ((t_2.y1 == 15) and (t_2.y2 == 15) and (t_2.y3 == 10) and (t_2.y4 == 10)){//конец первого кейса
-                    if ((t_3.x1 == 12) and (t_3.x2 == 15) and (t_3.x3 == 15) and (t_3.x4 == 12)){
-                        if ((t_4.x1 == 12) and (t_4.x2 == 15) and (t_4.x3 == 15) and (t_4.x4 == 12)){
-                            if ((t_3.y1 == 9) and (t_3.y2 == 9) and (t_3.y3 == 6) and (t_3.y4 == 6)){
-                                if ((t_4.y1 == 9) and (t_4.y2 == 9) and (t_4.y3 == 6) and (t_4.y4 == 6)){
-                                    cout << "\nTEST FOURTH MODULE - FOURTH MODULE CORRECT";
-                                }
-                                else{
-                                    cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
-                                }
-                            }
-                            else{
-                                cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
-                            }
-                        }
-                        else{
-                            cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
-                        }
-                    }
-                    else{
-                        cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
-                    }
-                }
-                else{
-                    cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
-                }
-            }
-            else{
-                cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
-            }
-        }
-        else{
-            cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
-        }
+void test_moveByRef() {
+    auto actual = new Square(new Point(1, 1), new Point(2, 2));
+    auto p = Point(1, 1);
+    auto expected = new Square(new Point(2, 2), new Point(3, 3));
+
+    actual->moveByRef(p);
+
+    if ((
+           actual->p1->x1 == expected->p1->x1 && actual->p1->y1 == expected->p1->y1 &&
+           actual->p2->x1 == expected->p2->y1 && actual->p2->y1 == expected->p2->y1
+    )) {
+        cout << "\nTEST FOURTH MODULE - FOURTH MODULE CORRECT";
     }
     else{
         cout << "\nTEST FOURTH MODULE - FOURTH MODULE NOT CORRECT";
     }
 }
+
+void start(){
+        cout << "---FIRST MODULE---\n";
+        float a, b;
+        float c = 0;
+
+        cout << "\nEnter first number -";
+        cin >> a;
+        cout << "Enter second number -";
+        cin >> b;
+        summ_ref(a, b, c);
+        cout << "Result = " << c;
+        test_summ();
+
+        cout << "\n\n---SECOND MODULE---\n";
+        float a2, b2;
+        cout << "\nEnter number -";
+        cin >> a2;
+        without_real_point(&a2, &b2);
+        cout << "Result = " << b2;
+        test_without_real();
+
+        cout << "\n\n---THIRD MODULE---\n";
+        complex_ref num;
+        cout << "\nEnter Real (Re) number -";
+        cin >> num.real;
+        cout << "Enter Imagine (Im) number -";
+        cin >> num.imagine;
+        if (num.imagine > 0){
+            cout << "Result before = " << num.real << '+' << num.imagine << 'i';
+        }
+        if (num.imagine < 0){
+            cout << "Result before = " << num.real << num.imagine << 'i';
+        }
+        if (num.imagine == 0){
+            cout << "Result before = " << num.real;
+        }
+        num.imagine_after= 0;
+        complex_num_ref(num);
+        if (num.imagine_after > 0){
+            cout << "\nResult after = " << num.real << '+' << num.imagine_after << 'i';
+        }
+        if (num.imagine_after < 0){
+            cout << "\nResult after = " << num.real << num.imagine_after << 'i';
+        }
+        if (num.imagine_after == 0){
+            cout << "\nResult after = " << num.real;
+        }
+        test_complex_num();
+
+
+        cout << "\n\n---FOURTH MODULE---\n";
+        square pt;
+        cout << "\nEnter the coordinates of the upper left corner of the square -";
+        cin >> pt.x1 >> pt.y1;
+        cout << "Enter side length of a square -";
+        cin >> pt.s;
+        cout << "Enter the vector coordinates -";
+        cin >> pt.k1 >> pt.k2;
+        square_ref(pt);
+        cout << "\nCoordinates after shift\n";
+        cout << "Coordinates of the first point (upper left corner) -" << '(' << pt.x1 << ',' << ' ' << pt.y1 << ")\n";
+        cout << "Coordinates of the second point (upper right corner) -" << '(' << pt.x2 << ',' << ' ' << pt.y2 << ")\n";
+        cout << "Coordinates of the third point (lower right corner) -" << '(' << pt.x3 << ',' << ' ' << pt.y3 << ")\n";
+        cout << "Coordinates of the fourth point (lower left corner) -" << '(' << pt.x4 << ',' << ' ' << pt.y4 << ")\n";
+        test_moveByRef();
+};
